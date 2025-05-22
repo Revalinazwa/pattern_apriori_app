@@ -1,0 +1,6 @@
+flask
+flask-cors
+mlxtend
+pandas
+streamlit
+requests
