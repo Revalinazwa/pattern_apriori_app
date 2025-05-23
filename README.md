@@ -1,3 +1,9 @@
+Install dependency :
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
 Run server at localhost:5000 :
 
    ```bash
