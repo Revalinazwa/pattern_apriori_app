@@ -4,7 +4,7 @@ Run server at localhost:5000 :
    python app.py
    ```
 
-Run streamlit app at localhost:8501) :
+Run streamlit app at localhost:8501 :
 
    ```bash
    streamlit run apriori_app.py
