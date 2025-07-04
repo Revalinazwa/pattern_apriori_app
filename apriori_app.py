@@ -29,32 +29,11 @@ if dataset_res.ok:
         with col1:
             st.markdown(f"**{idx+1}.** {', '.join(trans)}")
         with col2:
-            col2a, col2b = st.columns([1, 1])
-            with col2a:
-                if st.button("Edit", key=f"edit-{idx}"):
-                    st.session_state.edit_idx = idx
-                    st.session_state.edit_value = ', '.join(trans)
-            with col2b:
-                if st.button("Hapus", key=f"del-{idx}"):
-                    requests.delete(f"{API_URL}/dataset/{idx}")
-                    st.experimental_rerun()
+            # Hapus tombol Edit, hanya tampilkan tombol Hapus
+            if st.button("Hapus", key=f"del-{idx}"):
+                requests.delete(f"{API_URL}/dataset/{idx}")
+                st.experimental_rerun()
 
-    # --- FORM EDIT (JIKA DIPILIH) ---
-    if "edit_idx" in st.session_state:
-        st.markdown("---")
-        st.subheader("Edit")
-        with st.form("form_edit"):
-            new_val = st.text_input("Edit hukum tajwid (pisahkan dengan koma):", st.session_state.edit_value)
-            submit_edit = st.form_submit_button("Simpan Perubahan")
-
-        if submit_edit:
-            new_data = [x.strip() for x in new_val.split(",") if x.strip()]
-            idx_to_edit = st.session_state.edit_idx
-            requests.put(f"{API_URL}/dataset/{idx_to_edit}", json=new_data)
-            del st.session_state.edit_idx
-            del st.session_state.edit_value
-            st.success("Transaksi berhasil diubah")
-            st.experimental_rerun()
 
 # --- PARAMETER & PROSES APRIORI ---
 st.subheader("Proses Apriori")
